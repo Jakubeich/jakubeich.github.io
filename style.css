@@ -39,6 +39,10 @@ body {
     background-color: green;
 }
 
+#engine {
+    background-color: black;
+}
+
 #jam {
     background-color: yellow;
     color: black;
