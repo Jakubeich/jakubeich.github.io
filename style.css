@@ -10,13 +10,10 @@ body {
 }
 
 .project {
-    margin-left: 141px;
-    margin-right: 141px;
-    border-bottom:  5px solid red;
-    margin-bottom: 80px;
     display: block;
     font-size: 20px;
-    margin-top: 30px;
+    padding-top: 30px;
+    margin-top: 0;
 }
 
 .type {
@@ -65,14 +62,12 @@ body {
 }
 
 .container {
-
     font-size: 16px;
     margin-left: 20%;
     margin-right: 20%;
 }
 
 .container h1 {
-    text-align:  center;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
     font-size: 28px;
@@ -105,12 +100,11 @@ body {
 }
 
 .project a {
-  
+    margin-right: 20px;
     font-weight: bold;
     color: black;
-    font-size: 30px;
+    font-size: 24px;
     text-decoration: none;
-    text-align: center;
 }
 
 .project a:hover {
@@ -122,8 +116,6 @@ body {
     font-size: 19px;
     margin-left: 1em;
     margin-top: 0.2em;
-    margin-bottom: 45px;
-
 }
 
 div.nav-bar { 
@@ -144,68 +136,4 @@ div.nav-bar {
 
 li {
     padding: 5px;
-}
-
-a {
-   margin-left: 30px;
-
-   
-
-}
-
-.obrazky1  {
-    position: absolute;
-    margin-left: 430px;
-    width: 25%;
-    bottom: 15.4%;
-}
-
-.obrazky2 {
-    position: absolute;
-    margin-left: 430px;
-    width: 22.1%;
-    height: 22.3%;
-    top: 85.2%;
-
-
-}
-
-.obrazky3 {
-    border: 3px solid black;
-    top: 107.8%;
-    position: absolute;
-    margin-left: 430px;
-    width: 8.2%;
-    height: 21.6%;
-
-}
-
-.obrazky4 {
-    border: 3px solid black;
-    top: 107.8%;
-    position: absolute;
-    margin-left: 590px;
-    width: 13.4%;
-    height: 100px;
-
-}
-
-.obrazky5 {
-    border: 3px solid black;
-    top: 118.5%;
-    position: absolute;
-    margin-left: 590px;
-    width: 13.4%;
-    height: 102px;
-
-}
-
-.obrazky6 {
-    position: absolute;
-    margin-left: 430px;
-    top: 130.5%;
-    width: 22.1%;
-    height: 230px;
-
-
 }
