@@ -123,7 +123,6 @@ div.nav-bar {
     flex: 100%;
 }
 
-
 .me {
     margin-left:  20%;
     margin-right:  20%;
@@ -136,4 +135,66 @@ div.nav-bar {
 
 li {
     padding: 5px;
+}
+
+
+a {
+   margin-left: 30px;
+}
+
+.obrazky1  {
+    position: absolute;
+    margin-left: 430px;
+    width: 25%;
+    bottom: 16.2%;
+}
+
+.obrazky2 {
+    position: absolute;
+    margin-left: 430px;
+    width: 22.1%;
+    height: 22.3%;
+    top: 84.2%;
+
+
+}
+
+.obrazky3 {
+    border: 3px solid black;
+    top: 106.9%;
+    position: absolute;
+    margin-left: 430px;
+    width: 8.2%;
+    height: 21.6%;
+
+}
+
+.obrazky4 {
+    border: 3px solid black;
+    top: 106.9%;
+    position: absolute;
+    margin-left: 590px;
+    width: 13.4%;
+    height: 100px;
+
+}
+
+.obrazky5 {
+    border: 3px solid black;
+    top: 117.6%;
+    position: absolute;
+    margin-left: 590px;
+    width: 13.4%;
+    height: 102px;
+
+}
+
+.obrazky6 {
+    position: absolute;
+    margin-left: 430px;
+    top: 129.7%;
+    width: 22.1%;
+    height: 230px;
+
+
 }
