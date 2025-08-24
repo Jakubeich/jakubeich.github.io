@@ -1,141 +1,660 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Jakub Mitrega's Website</title>
-        <link rel="stylesheet" href="style.css"/>
-        <link rel="stylesheet" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div style="background-image: url('codyyys.png');" class="nav-bar">
-            <h1>Jakub Mitrega</h1>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jakub Mitrega — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio full-stack vývojáře Jakuba Mitregy: UNIDIR (OSN), NEXT WORKOUT CMS, klientská zóna pojišťovacího makléře, chatboti, menší weby a kontakty."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===================== THEME TOKENS ===================== */
+      :root {
+        /* dark (default) */
+        --bg: #0b0c10;
+        --text: #e6e9ef;
+        --muted: #a7b0c0;
+        --brand: #6ee7b7;
+        --brand-2: #60a5fa;
+
+        --surface-1: #10131a;
+        --surface-2: #0c0f15;
+        --chip: #171a21;
+        --stroke: #1f232e;
+        --hover-stroke: #273044;
+
+        --nav-bg: rgba(11, 12, 16, 0.6);
+        --badge-bg: linear-gradient(180deg, #12151c, #0f1218);
+        --ghost-bg: #0f1218;
+
+        --rad1: rgba(96, 165, 250, 0.15);
+        --rad2: rgba(110, 231, 183, 0.12);
+
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        --ring: 0 0 0 3px rgba(96, 165, 250, 0.25);
+      }
+
+      /* light overrides */
+      body.light {
+        --bg: #f5f7fb;
+        --text: #0f172a;
+        --muted: #4b5563;
+        --brand: #3b82f6;
+        --brand-2: #06b6d4;
+
+        --surface-1: #ffffff;
+        --surface-2: #f8fafc;
+        --chip: #eef2f7;
+        --stroke: #e5e7eb;
+        --hover-stroke: #cbd5e1;
+
+        --nav-bg: rgba(255, 255, 255, 0.75);
+        --badge-bg: linear-gradient(180deg, #ffffff, #f7fafc);
+        --ghost-bg: #ffffff;
+
+        --rad1: rgba(59, 130, 246, 0.12);
+        --rad2: rgba(6, 182, 212, 0.1);
+
+        --shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+        --ring: 0 0 0 3px rgba(59, 130, 246, 0.18);
+      }
+
+      /* ===================== BASE ===================== */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, sans-serif;
+        background: radial-gradient(
+            1200px 600px at 80% -10%,
+            var(--rad1),
+            transparent
+          ),
+          radial-gradient(900px 500px at -10% -20%, var(--rad2), transparent),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1150px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===================== NAV ===================== */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--nav-bg);
+        backdrop-filter: saturate(180%) blur(12px);
+        border-bottom: 1px solid var(--stroke);
+        transition: background 0.25s ease, border-color 0.25s ease;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+      }
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        display: grid;
+        place-items: center;
+        color: #0b0c10;
+        font-weight: 800;
+        box-shadow: var(--shadow);
+      }
+      .brand h1 {
+        font-size: 18px;
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+
+      .nav a.btn {
+        padding: 10px 14px;
+        border: 1px solid var(--stroke);
+        border-radius: 12px;
+        background: var(--ghost-bg);
+        font-weight: 600;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .nav a.btn:hover {
+        border-color: var(--hover-stroke);
+      }
+
+      /* theme switch */
+      .theme-toggle {
+        padding: 8px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: var(--ghost-bg);
+        color: var(--text);
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.2s ease, color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .theme-toggle:hover {
+        border-color: var(--brand-2);
+      }
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+      }
+
+      /* ===================== HERO ===================== */
+      .hero {
+        padding: 88px 0 48px;
+        border-bottom: 1px solid var(--stroke);
+      }
+      .badge {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--badge-bg);
+        border: 1px solid var(--stroke);
+        color: var(--muted);
+        font-size: 13px;
+        transition: background 0.25s ease, color 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .hero h2 {
+        font-size: 44px;
+        line-height: 1.15;
+        margin: 14px 0 10px;
+        letter-spacing: 0.2px;
+      }
+      .hero p {
+        max-width: 760px;
+        color: var(--muted);
+        margin: 0 0 24px;
+      }
+
+      .cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        padding: 12px 18px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color: #0b0c10;
+        font-weight: 800;
+        border: none;
+      }
+      .btn-ghost {
+        padding: 12px 18px;
+        border-radius: 14px;
+        border: 1px solid var(--stroke);
+        background: var(--ghost-bg);
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      /* ===================== SECTIONS ===================== */
+      section {
+        padding: 48px 0;
+        border-bottom: 1px solid var(--stroke);
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 22px;
+      }
+      .section-head h3 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.3px;
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      /* ===================== CARDS ===================== */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+      }
+      .card {
+        grid-column: span 12;
+        background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+        border: 1px solid var(--stroke);
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.2s ease, background 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .card:hover {
+        border-color: var(--hover-stroke);
+      }
+      .card .top {
+        display: flex;
+        gap: 14px;
+        align-items: start;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--chip);
+        border: 1px solid var(--stroke);
+        color: var(--muted);
+        font-size: 12px;
+        transition: background 0.2s ease, border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .stack {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .card h4 {
+        margin: 4px 0 4px;
+        font-size: 18px;
+      }
+      .card p {
+        margin: 8px 0 12px;
+        color: var(--muted);
+      }
+      .card .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      @media (min-width: 720px) {
+        .card {
+          grid-column: span 6;
+        }
+      }
+      @media (min-width: 1024px) {
+        .card {
+          grid-column: span 4;
+        }
+        .hero h2 {
+          font-size: 56px;
+        }
+      }
+
+      /* ===================== SKILLS ===================== */
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .skill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--chip);
+        border: 1px solid var(--stroke);
+        font-weight: 600;
+        font-size: 13px;
+        transition: background 0.2s ease, border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      /* ===================== TIMELINE / ITEMS ===================== */
+      .timeline {
+        display: grid;
+        gap: 14px;
+      }
+      .item {
+        padding: 16px;
+        border: 1px solid var(--stroke);
+        border-radius: 16px;
+        background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .item h5 {
+        margin: 0 0 4px;
+        font-size: 16px;
+      }
+      .item small {
+        color: var(--muted);
+      }
+
+      /* ===================== FOOTER ===================== */
+      footer {
+        padding: 38px 0;
+      }
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+      }
+      .footer-links {
+        display: flex;
+        gap: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="brand">
+          <div class="logo">JM</div>
+          <h1>Jakub Mitrega</h1>
         </div>
+        <nav class="footer-links">
+          <a href="#projekty" class="btn">Projekty</a>
+          <a href="#dovednosti" class="btn">Dovednosti</a>
+          <a href="#zkusenosti" class="btn">Zkušenosti</a>
+          <a href="#kontakt" class="btn">Kontakt</a>
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Přepnout motiv"
+          >
+            🌙
+          </button>
+        </nav>
+      </div>
+    </header>
 
-        <div class="me"> <h1>Something About me <hr></h1>
-            <p class="kdo">I am 17 years old, I am high school student studying the specialization of programming and network administration but I am probably most interested in programming.</p>
-            <li>
-                🔨 Programming languages I mainly use: Java, Javascript, HTML, CSS and a little C#, Python, C++
-            </li>
-
-
-            <li>
-                🔧 Tools/Frameworks I often use: LibGDX, GameMaker Studio, Unity, Eclipse, Visual Studio
-            </li>
-
-
-            <li>
-                📫 How to reach me: jakubmitrega1@gmail.com
-            </li>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">🏠 Třinec - Moravskoslezský kraj</span>
+        <h2>👋 Ahoj! — jsem Jakub Mitrega full-stack vývojář</h2>
+        <p>
+          Jsem 20letý vývojář s vášní pro programování a řešení reálných
+          problémů pomocí kódu. Ačkoli mám zkušenosti s počítačovými sítěmi,
+          moje hlavní zaměření spočívá ve vývoji softwaru v různých oblastech –
+          od webových a mobilních aplikací po širší programátorské výzvy. V
+          současné době pracuji ve společnosti Devx jako full-stack vývojář, kde
+          pokračuji v rozvíjení svých dovedností, objevování nových technologií
+          a prohlubování svých znalostí softwarového inženýrství jako celku.
+        </p>
+        <div class="cta">
+          <a class="btn-primary" href="#kontakt">Chci spolupracovat</a>
+          <a class="btn-ghost" href="mailto:jakubmitrega1@gmail.com"
+            >jakubmitrega1@gmail.com</a
+          >
+          <a class="btn-ghost" href="https://www.linkedin.com/in/jakub-mitrega-664140273" target="_blank" rel="noreferrer"
+            >LinkedIn</a
+          >
         </div>
-<br> <br>
+      </div>
+    </section>
 
+    <section id="projekty">
+      <div class="container">
+        <div class="section-head">
+          <h3>Vybrané projekty</h3>
+          <p>Jen to, co dávám s klidným svědomím na vizitku.</p>
+        </div>
+        <div class="grid">
+          <!-- UNIDIR (OSN) -->
+          <article class="card">
+            <div class="top"><span class="pill">Enterprise • OSN</span></div>
+            <h4>UNIDIR — interní portály & chatboti</h4>
+            <p>
+              Spolupráce na vývoji pro instituci
+              <strong>UNIDIR (United Nations)</strong>
+            </p>
+            <div class="stack">
+              <span class="pill">Next.js</span>
+              <span class="pill">React</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">GraphQL</span>
+              <span class="pill">Docker</span>
+              <span class="pill">Elasticsearch</span>
+            </div>
+          </article>
 
-        <div class="container">
-            <h1> My Projects</h1>
-            <hr>
-            
-            <h2>2021</h2>
+          <!-- NEXT WORKOUT CMS -->
+          <!-- <article class="card">
+            <div class="top"><span class="pill">Produkt</span></div>
+            <h4>CMS pro aplikaci NEXT WORKOUT</h4>
+            <p>
+              Vytvoření administrace a API pro správu obsahu tréninkové
+              aplikace. Customizace UI v Payload CMS
+            </p>
+            <div class="stack">
+              <span class="pill">Next.js</span>
+              <span class="pill">Payload CMS</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">PostgreSQL</span>
+            </div>
+          </article> -->
 
-            <div class="project">
-                <a href="http://litecode.net/">LiteCode</a>
-                <div class="type" id="in-dev">Active</div>
-                <div class="type" id="platform">Web</div>
-                <div class="type" id="language">Flask JS HTML CSS</div>
-                <div class="type" id="software">Application</div>
-                <br>
-                <div id="description">
-                    This is website created for schools.
-                </div>
-            </div> 
-            
-            <div class="project">
-                <a href="https://github.com/Jakubeich/PuzzledGame">Puzzled Game!</a>
-                <div class="type" id="in-dev">Active</div>
-                <div class="type" id="platform">Desktop</div>
-                  <div class="type" id="language">Java</div>
-                <div class="type" id="game">Game</div>
-                <br>
-                <div id="description">
-                    This is my arcade puzzled game.
-                </div>
-            </div> 
-            
-            <div class="project">
-                <a href="https://github.com/Jakubeich/GameEngine2D">GameEngine2D</a>
-                <div class="type" id="prototype">Prototype</div>
-                <div class="type" id="platform">Desktop</div>
-                <div class="type" id="language">Java</div>
-                <div class="type" id="engine">Engine</div>
-                <br>
-                <div id="description">
-                    This is my engine prototype.
-                </div>
-            </div> 
-            
-            <div class="project">
-                <a href="https://github.com/Jakubeich/WebAppPrototypes">WebAppPrototypes</a>
-                <div class="type" id="in-dev">Active</div>
-                <div class="type" id="platform">Desktop</div>
-                <div class="type" id="language">JS HTML CSS</div>
-                <div class="type" id="software">Applications</div>
-                <br>
-                <div id="description">
-                    This is my collection of simple applications.
-                </div>
-            </div> 
-            
-            <div class="project">
-                <a href="https://github.com/Jakubeich/RPG-Game">RPG Game</a>
-                <div class="type" id="prototype">Prototype</div>
-                <div class="type" id="platform">Desktop</div>
-                 <div class="type" id="language">GameMaker Studio 1.4</div>
-                <div class="type" id="game">Game</div>
-                <br>
-                <div id="description">
-                    A temporary prototype of my RPG game developed in GameMaker Studio 1.4.
-                </div>
+          <!-- Klientská zóna makléře -->
+          <article class="card">
+            <div class="top"><span class="pill">B2C / B2B</span></div>
+            <h4>RENOMIA Klientská zóna — největší pojišťovací makléř v ČR</h4>
+            <p>
+              Spolupráce na tvorbě klientské zóny. Práce v multidisciplinárním
+              týmu, code-review a CI/CD.
+            </p>
+            <div class="stack">
+              <span class="pill">Next.js</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">Tailwind</span>
             </div>
-            
-            <hr>
-            
-            <h2>2020</h2>
-            
-            <div class="project">
-                <a href="https://github.com/Jakubeich/FaceDetection">FaceDetection</a>
-                <div class="type" id="prototype">Prototype</div>
-                <div class="type" id="platform">Desktop</div>
-                <div class="type" id="language">JS HTML</div>
-                <div class="type" id="software">Applications</div>
-                <br>
-                <div id="description">
-                    This is my real time face detection for recognizing emotions and face points.
-                </div>
+          </article>
+
+          <!-- Chatboti UNIDIR -->
+          <article class="card">
+            <div class="top"><span class="pill">Conversational</span></div>
+            <h4>Chatbot systémy pro portály UNIDIR (United Nations)</h4>
+            <p>
+              Realizace dvou chatbotů s využitím AI (OpenAI GPT-3.5/4o) pro
+              portály UNIDIR (Cybil Portal, Cyber Policy Portal).
+            </p>
+            <div class="stack">
+              <span class="pill">NestJS</span>
+              <span class="pill">Elasticsearch</span>
+              <span class="pill">Redis</span>
+              <span class="pill">OpenAI</span>
             </div>
-            
-            <div class="project">
-                <a href="https://github.com/Jakubeich/MiniAppPrototypes">MiniAppPrototypes</a>
-                <div class="type" id="prototype">Prototype</div>
-                <div class="type" id="platform">Desktop</div>
-                <div class="type" id="language">Java</div>
-                <div class="type" id="software">Applications</div>
-                <div class="type" id="game">Game</div>
-                <br>
-                <div id="description">
-                    Small prototypes of applications and games developed in Java.
-                </div>
+          </article>
+
+          <!-- Lu Peče Bakery -->
+          <article class="card">
+            <div class="top"><span class="pill">Mikro-zakázka</span></div>
+            <h4>Lu Peče Bakery — prezentační web</h4>
+            <p>
+              Lehký a hezký web pro lokální pekárnu. Optimalizace pro rychlost a
+              SEO, správa obsahu a jednoduché objednávky přes formulář.
+            </p>
+            <div class="stack">
+              <span class="pill">HTML</span>
+              <span class="pill">CSS</span>
+              <span class="pill">Resend</span>
+              <span class="pill">Altcha</span>
             </div>
-            
-            
-    </body>
+            <div class="actions" style="margin-top: 12px">
+              <a
+                class="btn-ghost"
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.instagram.com/lu.pece.bakery"
+                >Instagram</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dovednosti">
+      <div class="container">
+        <div class="section-head">
+          <h3>Dovednosti</h3>
+          <p>Výběr z ověřených skillů.</p>
+        </div>
+        <div class="skills">
+          <span class="skill">Front-end vývoj</span>
+          <span class="skill">Back-end vývoj</span>
+          <span class="skill">React</span>
+          <span class="skill">Next.js</span>
+          <span class="skill">React Native</span>
+          <span class="skill">TypeScript</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">NestJS</span>
+          <span class="skill">GraphQL</span>
+          <span class="skill">Elasticsearch</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">Git</span>
+          <span class="skill">Strapi</span>
+          <span class="skill">Payload CMS</span>
+          <span class="skill">Docker</span>
+          <span class="skill">Kubernetes</span>
+          <span class="skill">CI/CD</span>
+          <span class="skill">Tvorba webových stránek</span>
+          <span class="skill">Kybernetická bezpečnost</span>
+          <span class="skill">Počítačové sítě</span>
+          <span class="skill">Správa sítě</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="zkusenosti">
+      <div class="container">
+        <div class="section-head">
+          <h3>Zkušenosti & vzdělání</h3>
+          <p>Krátce a k věci.</p>
+        </div>
+        <div class="grid">
+          <div class="item" style="grid-column: span 12">
+            <h5>Programmer / Website Developer — Devx</h5>
+            <small>07/2024 – současnost • Třinec</small>
+            <p>
+              Full-stack vývoj, React/Next.js, GraphQL, code-review, práce v
+              týmu, CI/CD. Předtím stáž (10/2023 – 02/2024).
+            </p>
+          </div>
+          <div class="item" style="grid-column: span 12">
+            <h5>Ostravská univerzita — Aplikovaná informatika</h5>
+            <small>2024 – 2027 • Ročník: 2 (v současné době)</small>
+          </div>
+          <div class="item" style="grid-column: span 12">
+            <h5>
+              Střední škola informačních technologií — Počítačové systémy a sítě
+            </h5>
+            <small>2020 – 2024</small>
+          </div>
+          <div class="item" style="grid-column: span 12">
+            <h5>Cisco certifikace (CCNA 2, CCNA 3)</h5>
+            <small>2023</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container">
+        <div class="section-head">
+          <h3>Kontakt</h3>
+          <p>Nejrychlejší je e-mail — odpovím obratem.</p>
+        </div>
+        <div class="grid">
+          <div class="card" style="grid-column: span 6">
+            <h4>📫 Napište mi</h4>
+            <p>
+              <a href="mailto:jakubmitrega1@gmail.com"
+                >jakubmitrega1@gmail.com</a
+              >
+            </p>
+            <p>
+              LinkedIn:
+              <a
+                href="https://www.linkedin.com/in/jakub-mitrega-664140273"
+                target="_blank"
+                rel="noreferrer"
+                >/jakub-mitrega</a
+              >
+            </p>
+          </div>
+          <div class="card" style="grid-column: span 6">
+            <h4>🔎 Co nabízím</h4>
+            <p>
+              Rychlé SPA/SSR aplikace, bezpečné API, moderní UX, nasazení do
+              cloudu, monitoring a dlouhodobá údržba.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Jakub Mitrega</span>
+        <div class="footer-links">
+          <a href="#projekty">Projekty</a><span>•</span
+          ><a href="#kontakt">Kontakt</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // set current year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // initial theme: localStorage -> prefers-color-scheme -> default dark
+      (function initTheme() {
+        const saved = localStorage.getItem("theme"); // 'light' | 'dark' | null
+        if (saved === "light") document.body.classList.add("light");
+        else if (saved === "dark") document.body.classList.remove("light");
+        else if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches
+        ) {
+          document.body.classList.add("light");
+        }
+        document.getElementById("theme-toggle").textContent =
+          document.body.classList.contains("light") ? "☀️" : "🌙";
+      })();
+
+      // toggle + persist
+      const toggle = document.getElementById("theme-toggle");
+      toggle.addEventListener("click", () => {
+        const isLight = document.body.classList.toggle("light");
+        toggle.textContent = isLight ? "☀️" : "🌙";
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+      });
+    </script>
+  </body>
 </html>
-
-<!--
-    Tags
-    <div class="type" id="unfinished">Unfinished</div>
-    <div class="type" id="prototype">Prototype</div>
-    <div class="type" id="in-dev">Active</div>
--->
