@@ -63,7 +63,7 @@
       </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero reveal">
       <div class="container">
         <span class="badge">🏠 Třinec - Moravskoslezský kraj</span>
         <h2>
@@ -95,7 +95,50 @@
       </div>
     </section>
 
-    <section id="projekty">
+    <section id="prehled" class="reveal">
+      <div class="container">
+        <div class="section-head">
+          <h3>Rychlý přehled</h3>
+          <p>Čísla a fakta, která nejlépe vystihují můj přístup k práci.</p>
+        </div>
+        <div class="stat-grid">
+          <article class="card stat">
+            <div class="stat-icon">🚀</div>
+            <div>
+              <p class="stat-label">Produkční releasy</p>
+              <p class="stat-value">10+ uvedení</p>
+              <p class="stat-note">Plánování, QA, rollout i post‑launch péče.</p>
+            </div>
+          </article>
+          <article class="card stat">
+            <div class="stat-icon">🛡️</div>
+            <div>
+              <p class="stat-label">Bezpečnost & spolehlivost</p>
+              <p class="stat-value">99.9% mindset</p>
+              <p class="stat-note">Monitoring, logování, alerty a rollback scénáře.</p>
+            </div>
+          </article>
+          <article class="card stat">
+            <div class="stat-icon">🧭</div>
+            <div>
+              <p class="stat-label">Délka praxe</p>
+              <p class="stat-value">4+ let programování</p>
+              <p class="stat-note">Od sítí k full-stacku: React, Next.js, NestJS.</p>
+            </div>
+          </article>
+          <article class="card stat">
+            <div class="stat-icon">🤝</div>
+            <div>
+              <p class="stat-label">Spolupráce</p>
+              <p class="stat-value">Multidisciplinární týmy</p>
+              <p class="stat-note">Design, produkt, QA, DevOps — společný tah na branku.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projekty" class="reveal">
       <div class="container">
         <div class="section-head">
           <h3>Vybrané projekty</h3>
@@ -221,7 +264,7 @@
       </div>
     </section>
 
-    <section id="dovednosti">
+    <section id="dovednosti" class="reveal">
       <div class="container">
         <div class="section-head">
           <h3>Dovednosti</h3>
@@ -249,7 +292,7 @@
       </div>
     </section>
 
-    <section id="zkusenosti">
+    <section id="zkusenosti" class="reveal">
       <div class="container">
         <div class="section-head">
           <h3>Zkušenosti & vzdělání</h3>
@@ -302,7 +345,7 @@
       </div>
     </section>
 
-    <section id="kontakt">
+    <section id="kontakt" class="reveal">
       <div class="container">
         <div class="section-head">
           <h3>Kontakt</h3>
@@ -347,6 +390,10 @@
       </div>
     </footer>
 
+    <button id="scroll-top" class="scroll-top" aria-label="Zpět nahoru">
+      ↑ Nahoru
+    </button>
+
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -386,6 +433,33 @@
             menuBtn.setAttribute("aria-expanded", "false");
           }
         })
+      );
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      const scrollBtn = document.getElementById("scroll-top");
+      const toggleScrollBtn = () => {
+        const show = window.scrollY > 420;
+        scrollBtn.setAttribute("data-show", String(show));
+      };
+
+      toggleScrollBtn();
+      window.addEventListener("scroll", toggleScrollBtn);
+
+      scrollBtn.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
       );
     </script>
   </body>
